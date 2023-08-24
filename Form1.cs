@@ -10,6 +10,8 @@ namespace WinFormsApp20230824
 
             // двумерный массив кнопок
 
+            Random random = new Random(); // Генератор случайных чисел для случайных цветов кнопок
+
             int buttonWidth = 50;
             int buttonHeight = 50;
             int distanceBetweenButtons = 10;
@@ -18,8 +20,8 @@ namespace WinFormsApp20230824
 
 
             int x, y; // координаты кнопки в массиве на форме
-            int numberOfRows = 5;
-            int numberOfColumns = 12;
+            int numberOfRows = 15;
+            int numberOfColumns = 30;
 
 
             for (int row = 0; row < numberOfRows; row++)
@@ -38,13 +40,16 @@ namespace WinFormsApp20230824
                     
                     button.Location = new Point(x, y);
 
+                    // Цвет кнопки
+                    Color randomColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+                    button.BackColor = randomColor;
+
                     // Текст кнопки
                     button.Text = ((row * numberOfColumns) + column + 1).ToString();
 
                     button.Parent = this;
                 }
             }
-
         }
 
         private void B_MouseDown(object? sender, MouseEventArgs e)
