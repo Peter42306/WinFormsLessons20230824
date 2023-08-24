@@ -8,37 +8,43 @@ namespace WinFormsApp20230824
         {
             InitializeComponent();
 
-            // массив кнопок
+            // двумерный массив кнопок
 
             int buttonWidth = 50;
             int buttonHeight = 50;
             int distanceBetweenButtons = 10;
             int distanceFirstButtonFromLeft = 10;
+            int distanceFromTop = 10;
 
-            int numberOfButtons = 12;
 
-            for (int i = 0; i < numberOfButtons; i++)
+            int x, y; // координаты кнопки в массиве на форме
+            int numberOfRows = 5;
+            int numberOfColumns = 12;
+
+
+            for (int row = 0; row < numberOfRows; row++)
             {
-                // Создание экземпляра Button
-                Button button = new Button();
+                for (int column = 0; column < numberOfColumns; column++)
+                {
+                    // Создание экземпляра Button
+                    Button button = new Button();
 
-                // Настройка размеров кнопки
-                button.Size = new Size(buttonWidth, buttonHeight);
+                    // Настройка размеров кнопки
+                    button.Size = new Size(buttonWidth, buttonHeight);
 
-                // Расположение кнопки на форме, в зависимости от индекса i
-                button.Location = new Point(
-                    distanceFirstButtonFromLeft + i * (buttonWidth + distanceBetweenButtons),
-                    distanceBetweenButtons
-                    );
+                    // Координаты кнопки на форме
+                    x = distanceFirstButtonFromLeft + column * (buttonWidth + distanceBetweenButtons);
+                    y = distanceFromTop + row * (buttonHeight + distanceBetweenButtons);
+                    
+                    button.Location = new Point(x, y);
 
-                // Текст кнопки
-                button.Text = (i + 1).ToString();
+                    // Текст кнопки
+                    button.Text = ((row * numberOfColumns) + column + 1).ToString();
 
-                // Подписка на событие "MouseDown"
-                button.MouseDown += B_MouseDown; 
-
-                button.Parent = this;
+                    button.Parent = this;
+                }
             }
+
         }
 
         private void B_MouseDown(object? sender, MouseEventArgs e)
